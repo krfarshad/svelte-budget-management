@@ -1,3 +1,15 @@
-<h1>Welcome to your library project</h1>
-<p>Create your package using @sveltejs/package and preview/showcase your work with SvelteKit</p>
-<p>Visit <a href="https://svelte.dev/docs/kit">svelte.dev/docs/kit</a> to read the documentation</p>
+<script lang="ts">
+	import { Landing } from '@/features/landing';
+
+	let firstName = 'farshad';
+	let lastName = 'karimi';
+	let fullName = firstName + lastName;
+
+	const changeName = (name: string) => {
+		fullName = name + lastName;
+	};
+</script>
+
+<main>
+	<Landing />
+</main>
