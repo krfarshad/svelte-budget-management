@@ -1,14 +1,11 @@
 <script lang="ts">
 	import { Landing } from '@/features/landing';
-
-	let firstName = 'farshad';
-	let lastName = 'karimi';
-	let fullName = firstName + lastName;
-
-	const changeName = (name: string) => {
-		fullName = name + lastName;
-	};
 </script>
+
+<svelte:head>
+	<title>Budget Management</title>
+	<meta name="description" content="Manage your budget for your next journey" />
+</svelte:head>
 
 <main>
 	<Landing />
