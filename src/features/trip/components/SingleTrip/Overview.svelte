@@ -1,4 +1,6 @@
 <script lang="ts">
+	import ChartCategory from './ChartCategory.svelte';
+
 	let budgetCategories = [
 		{ category: 'Food', amount: 200 },
 		{ category: 'Transport', amount: 150 },
