@@ -2,8 +2,8 @@
 	import { error } from '@sveltejs/kit';
 	import { trips } from '../../utils/mockData';
 	import ExpenseContent from './ExpenseContent.svelte';
-	import Tasks from './Tasks.svelte';
 	import Overview from './Overview.svelte';
+	import { TripTasks } from '@/features/todo/components';
 
 	// Fetch trip data
 	const { id } = $props();
@@ -21,10 +21,10 @@
 
 	<div class="flex items-center justify-between gap-4">
 		<div class="w-full max-w-xs">
-			<div class="mb-2 h-6 overflow-hidden rounded-md bg-gray-200">
-				<div class="h-full bg-blue-500" style="width: {trip.budget}%"></div>
+			<div class="mb-2 h-4 overflow-hidden rounded-md bg-gray-200">
+				<div class="h-full bg-blue-500" style="width: {trip.budget / 200}%"></div>
 			</div>
-			<p class="text-sm text-gray-600">Budget usage: {trip.budget}%</p>
+			<p class="text-sm text-gray-600">Budget usage: {trip.budget / 200}%</p>
 		</div>
 	</div>
 
@@ -45,7 +45,7 @@
 		<div class="rounded-md bg-gray-100 p-4">
 			{#if activeTab === 'Overview'}<Overview />{/if}
 
-			{#if activeTab === 'Tasks'}<Tasks />{/if}
+			{#if activeTab === 'Tasks'}<TripTasks tripId={id} />{/if}
 
 			{#if activeTab === 'Expenses'}<ExpenseContent />{/if}
 		</div>
