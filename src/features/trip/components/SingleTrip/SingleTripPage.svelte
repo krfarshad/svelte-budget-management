@@ -1,19 +1,15 @@
 <script lang="ts">
 	import { error } from '@sveltejs/kit';
 	import { trips } from '../../utils/mockData';
-	import ExpenseContent from './ExpenseContent.svelte';
 	import Overview from './Overview.svelte';
 	import { TripTasks } from '@/features/todo/components';
-
-	// Fetch trip data
+	import BudgetManager from '@/features/expenses/components/BudgetManager.svelte';
+	import ExpenseManager from '@/features/expenses/components/ExpenseManager.svelte';
 	const { id } = $props();
 	const trip = trips.find((trip) => trip.id == id);
 	if (!trip) error(404);
 
-	// Tabs and data initialization
 	let activeTab = $state('Overview');
-
-	// Functions to manage tasks and expenses
 </script>
 
 <div class="m-8">
@@ -30,7 +26,7 @@
 
 	<div class="mt-8 p-4">
 		<div class="mb-4 flex space-x-4 rounded-md bg-gray-100 text-center">
-			{#each ['Overview', 'Tasks', 'Expenses'] as tab}
+			{#each ['Overview', 'Tasks', 'Expenses', 'Categories'] as tab}
 				<button
 					class={`border-b-2 px-6 py-3 ${
 						activeTab === tab ? 'border-blue-600 text-blue-600' : 'border-transparent text-gray-500'
@@ -43,11 +39,13 @@
 		</div>
 
 		<div class="rounded-md bg-gray-100 p-4">
-			{#if activeTab === 'Overview'}<Overview />{/if}
+			{#if activeTab === 'Overview'}<Overview tripId={id as string} />{/if}
 
 			{#if activeTab === 'Tasks'}<TripTasks tripId={id} />{/if}
 
-			{#if activeTab === 'Expenses'}<ExpenseContent />{/if}
+			{#if activeTab === 'Categories'}<BudgetManager tripId={Number(id)} />{/if}
+
+			{#if activeTab === 'Expenses'}<ExpenseManager tripId={Number(id)} />{/if}
 		</div>
 	</div>
 </div>
